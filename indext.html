@@ -3,64 +3,375 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Final</title>
+    <title>Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap"
+      rel="stylesheet" />
     <style>
-      .hero {
-        min-height: 100vh;
+      :root {
+        --bg: #060022;
+        --accent: #e91e8c;
+        --accent2: #7c3aed;
+        --white: #ffffff;
+        --muted: rgba(255, 255, 255, 0.55);
+      }
 
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--white);
+      }
+
+      /* ── NAVBAR ── */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 8%;
+        z-index: 100;
+        /* no background — transparent over hero */
+      }
+
+      .logo {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 1.2rem;
+        letter-spacing: 0.05em;
+      }
+
+      .logo span {
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.88rem;
+        letter-spacing: 0.03em;
+        transition: color 0.2s;
+      }
+
+      .nav-links a:hover {
+        color: var(--white);
+      }
+
+      .nav-cta {
+        background: linear-gradient(135deg, var(--accent), #c2185b);
+        color: var(--white) !important;
+        padding: 0.45rem 1.3rem;
+        border-radius: 20px;
+        font-size: 0.85rem !important;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        min-height: 60dvh;
+        position: sticky;
+        top: 0;
         display: flex;
         align-items: center;
         justify-content: space-between;
-
-        padding: 0 8%;
-
+        padding: 6rem 8% 4rem;
         background: linear-gradient(135deg, #060022, #120038, #1f0057);
+        overflow: hidden;
+      }
 
-        color: white;
+      /* floating orbs */
+      .orb {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        opacity: 0.25;
+        animation: float 7s ease-in-out infinite;
+      }
+      .orb-1 {
+        width: 280px;
+        height: 280px;
+        background: var(--accent2);
+        top: -60px;
+        left: -60px;
+      }
+      .orb-2 {
+        width: 180px;
+        height: 180px;
+        background: var(--accent);
+        bottom: 0;
+        left: 20%;
+        animation-delay: 3s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-18px);
+        }
       }
 
       .hero-content {
         flex: 1;
-        max-width: 500px;
+        max-width: 520px;
+        animation: fadeUp 0.9s ease both;
       }
 
-      .hero-image {
-        flex: 1;
-
-        display: flex;
-        justify-content: center;
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
 
-      .hero-image img {
-        width: 100%;
-        max-width: 600px;
+      .hero-eyebrow {
+        font-size: 0.82rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-bottom: 0.8rem;
       }
 
       .hero h1 {
-        font-size: 4rem;
-        line-height: 1.1;
+        font-family: "Syne", sans-serif;
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 1.05;
+        margin-bottom: 1rem;
+      }
+
+      .hero h1 span {
+        color: var(--accent);
+      }
+
+      .hero-sub {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.6;
+        max-width: 400px;
+        margin-bottom: 2rem;
       }
 
       .hero-buttons {
         display: flex;
         gap: 1rem;
-        margin-top: 2rem;
+        flex-wrap: wrap;
       }
-      .features,
-      .about {
-        padding: 100px 8%;
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--accent), #c2185b);
+        color: white;
+        border: none;
+        padding: 0.65rem 1.6rem;
+        border-radius: 25px;
+        font-size: 0.85rem;
+        font-family: "DM Sans", sans-serif;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          transform 0.2s,
+          box-shadow 0.2s;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(233, 30, 140, 0.4);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: white;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        padding: 0.65rem 1.6rem;
+        border-radius: 25px;
+        font-size: 0.85rem;
+        font-family: "DM Sans", sans-serif;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        cursor: pointer;
+        text-decoration: none;
+        transition:
+          border-color 0.2s,
+          background 0.2s;
+      }
+
+      .btn-secondary:hover {
+        border-color: white;
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        position: relative;
+      }
+
+      .hero-image img {
+        width: 100%;
+        max-width: 520px;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* ── CONTENT SECTIONS ── */
+      .content {
+        position: relative;
+        z-index: 10;
+        background: #fff;
+        color: #111;
+      }
+
+      .section {
+        padding: 80px 8%;
+      }
+
+      .section h2 {
+        font-family: "Syne", sans-serif;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .section p {
+        color: #444;
+        line-height: 1.7;
+        max-width: 680px;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: linear-gradient(135deg, #060022, #120038);
+        color: var(--white);
+        padding: 3rem 8% 2rem;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .footer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+      }
+
+      .footer-logo {
+        font-family: "Syne", sans-serif;
+        font-weight: 800;
+        font-size: 1.2rem;
+      }
+
+      .footer-logo span {
+        color: var(--accent);
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .footer-links a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.88rem;
+        transition: color 0.2s;
+      }
+
+      .footer-links a:hover {
+        color: var(--white);
+      }
+
+      .footer-socials {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .footer-socials a {
+        color: var(--muted);
+        text-decoration: none;
+        font-size: 0.85rem;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 0.4rem 0.9rem;
+        border-radius: 20px;
+        transition: all 0.2s;
+      }
+
+      .footer-socials a:hover {
+        color: var(--white);
+        border-color: var(--accent);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        padding-top: 1.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .footer-bottom p {
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .footer-bottom a {
+        color: var(--accent);
+        text-decoration: none;
+        font-size: 0.8rem;
       }
     </style>
   </head>
   <body>
-    <section class="hero">
-      <div class="hero-content">
-        <h4>Artificial Intelligence</h4>
-        <h1>DEEP LEARNING SYSTEM</h1>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+      <div class="logo"><span>David Leke-Atere</span></div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Work</a>
+        <a href="#" class="nav-cta">Contact Me</a>
+      </div>
+    </nav>
 
+    <!-- HERO -->
+    <section class="hero">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+
+      <div class="hero-content">
+        <p class="hero-eyebrow">Pembina Trails Colligate</p>
+        <h1>Portfolio <span></span></h1>
+        <p class="hero-sub">
+          A short description about me and my work. I am a passionate developer
+          with a knack for creating beautiful and functional digital
+          experiences. — By David Leke-Atere.
+        </p>
         <div class="hero-buttons">
-          <a href="#" class="btn primary">Get Started</a>
-          <a href="#" class="btn secondary">Learn More</a>
+          <a href="#" class="btn-primary">View My Work</a>
+          <a href="#" class="btn-secondary">Learn More</a>
         </div>
       </div>
 
@@ -68,5 +379,36 @@
         <img src="head-graphic.png" alt="" />
       </div>
     </section>
+
+    <!-- CONTENT -->
+    <div class="content">
+      <section class="section">
+        <h2>Features</h2>
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
+          voluptate, doloremque, cumque, deleniti corporis consequatur
+          reprehenderit. Voluptate doloremque cumque deleniti corporis
+          consequatur reprehenderit voluptate doloremque cumque deleniti.
+        </p>
+      </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-top">
+        <div class="footer-logo">David<span>Leke-Atere</span></div>
+        <div class="footer-links">
+          <a href="#">Home</a>
+          <a href="#">Work</a>
+        </div>
+        <div class="footer-socials">
+          <a href="#">GitHub</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 David Leke-Atere. All rights reserved.</p>
+        <a href="#">Back to top ↑</a>
+      </div>
+    </footer>
   </body>
 </html>

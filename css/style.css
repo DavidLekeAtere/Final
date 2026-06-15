@@ -537,3 +537,11 @@ footer {
     gap: 0.75rem;
   }
 }
+.orb {
+  position: absolute;
+  /* ... your other orb styles ... */
+  z-index: -1; /* This pushes them behind the buttons */
+}
+.section {
+  transition: background-color 0.3s ease;
+}
